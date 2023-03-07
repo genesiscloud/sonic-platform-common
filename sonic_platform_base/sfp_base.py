@@ -206,6 +206,12 @@ class SfpBase(device_base.DeviceBase):
         """
         raise NotImplementedError
 
+    def get_transceiver_status(self):
+        raise NotImplementedError
+
+    def get_transceiver_pm(self):
+        raise NotImplementedError
+
     def get_reset_status(self):
         """
         Retrieves the reset status of SFP
