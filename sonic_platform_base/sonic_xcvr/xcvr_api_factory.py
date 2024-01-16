@@ -49,14 +49,20 @@ class XcvrApiFactory(object):
        name_data = self.reader(VENDOR_NAME_OFFSET, VENDOR_NAME_LENGTH)
        if name_data is None:
            return None
-       vendor_name = name_data.decode()
+       try:
+           vendor_name = name_data.decode()
+       except UnicodeError:
+           vendor_name = "Invalid"
        return vendor_name.strip()
 
     def _get_vendor_part_num(self):
        part_num = self.reader(VENDOR_PART_NUM_OFFSET, VENDOR_PART_NUM_LENGTH)
        if part_num is None:
            return None
-       vendor_pn = part_num.decode()
+       try:
+           vendor_pn = part_num.decode()
+       except UnicodeError:
+           vendor_pn = "Invalid"
        return vendor_pn.strip()
         
     def create_xcvr_api(self):
